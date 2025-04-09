@@ -1,110 +1,124 @@
 
 import React from 'react';
-import { Progress } from '@/components/ui/progress';
 import { 
-  Database, 
-  Code, 
-  BarChart4, 
   Brain, 
-  MessageSquare, 
-  FileSpreadsheet,
-  Layers, 
-  Flame, 
-  Wrench,
-  PanelTop, 
-  Calculator, 
-  LineChart
+  Cpu, 
+  BookOpen, 
+  BarChart2, 
+  Code, 
+  Wrench
 } from 'lucide-react';
 
-interface SkillItemProps {
+interface SkillDetailProps {
   name: string;
-  progress: number;
-  color: string;
-  icon: React.ReactNode;
 }
 
-const SkillItem: React.FC<SkillItemProps> = ({ name, progress, color, icon }) => {
+const SkillDetail: React.FC<SkillDetailProps & { children: React.ReactNode }> = ({ name, children }) => {
   return (
-    <div className="glass-card relative overflow-hidden group transition-all duration-300 hover:translate-y-[-5px]">
-      <div className={`${color} absolute top-0 left-0 w-1 h-full opacity-70`}></div>
-      <div className="p-6">
-        <div className="flex items-center mb-4">
-          <div className="mr-3 p-2 rounded-lg bg-card/80 text-foreground/80 group-hover:text-primary transition-colors">
+    <li className="flex items-center mb-2">
+      <div className="w-2 h-2 rounded-full bg-primary/70 mr-3"></div>
+      <span className="text-foreground/80">{name}</span>
+    </li>
+  );
+};
+
+interface SkillCardProps {
+  title: string;
+  icon: React.ReactNode;
+  color: string;
+  children: React.ReactNode;
+}
+
+const SkillCard: React.FC<SkillCardProps> = ({ title, icon, color, children }) => {
+  return (
+    <div className="glass-card rounded-xl overflow-hidden transition-all duration-300 hover:translate-y-[-5px] bg-card/50 backdrop-blur-sm border border-white/5 h-full">
+      <div className="p-6 flex flex-col h-full">
+        <div className="flex items-start mb-5">
+          <div className={`p-3 rounded-lg ${color} mr-4 mb-3`}>
             {icon}
           </div>
-          <h4 className="font-medium text-foreground/90 group-hover:text-foreground transition-colors">{name}</h4>
         </div>
-        <Progress value={progress} className={`h-2 ${color}`} />
-        <p className="text-right text-sm text-foreground/50 mt-2">{progress}%</p>
+        <h3 className="text-xl font-semibold mb-4 text-foreground">{title}</h3>
+        <ul className="space-y-1 text-sm">
+          {children}
+        </ul>
       </div>
     </div>
   );
 };
 
 const Skills = () => {
-  const technicalSkills = [
-    { name: "Python", progress: 90, color: "bg-primary", icon: <Code size={22} /> },
-    { name: "Machine Learning", progress: 85, color: "bg-secondary", icon: <Brain size={22} /> },
-    { name: "Data Analysis", progress: 80, color: "bg-blue-500", icon: <BarChart4 size={22} /> },
-    { name: "Deep Learning", progress: 75, color: "bg-purple-500", icon: <Layers size={22} /> },
-    { name: "NLP", progress: 70, color: "bg-emerald-500", icon: <MessageSquare size={22} /> },
-    { name: "SQL", progress: 65, color: "bg-amber-500", icon: <Database size={22} /> },
-  ];
-
-  const libraries = [
-    { name: "TensorFlow", progress: 80, color: "bg-orange-500", icon: <Flame size={22} /> },
-    { name: "PyTorch", progress: 75, color: "bg-red-500", icon: <Flame size={22} /> },
-    { name: "Scikit-Learn", progress: 85, color: "bg-green-500", icon: <Wrench size={22} /> },
-    { name: "Pandas", progress: 90, color: "bg-blue-400", icon: <FileSpreadsheet size={22} /> },
-    { name: "NumPy", progress: 85, color: "bg-yellow-500", icon: <Calculator size={22} /> },
-    { name: "Matplotlib", progress: 80, color: "bg-indigo-500", icon: <LineChart size={22} /> },
-  ];
-
   return (
     <section id="skills" className="py-24">
       <div className="section-container">
         <h2 className="section-title mb-16">My Skills</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-          <div className="space-y-8">
-            <div className="relative">
-              <h3 className="text-xl font-semibold mb-8 text-foreground/90 inline-block">
-                Technical Skills
-                <div className="absolute -bottom-3 left-0 h-1 w-1/3 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 gap-6">
-              {technicalSkills.map((skill, index) => (
-                <SkillItem 
-                  key={index}
-                  name={skill.name}
-                  progress={skill.progress}
-                  color={skill.color}
-                  icon={skill.icon}
-                />
-              ))}
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <SkillCard 
+            title="Machine Learning" 
+            icon={<Brain size={24} className="text-indigo-400" />}
+            color="bg-indigo-950/50"
+          >
+            <SkillDetail name="Supervised Learning" />
+            <SkillDetail name="Unsupervised Learning" />
+            <SkillDetail name="Feature Engineering" />
+            <SkillDetail name="Model Evaluation" />
+          </SkillCard>
           
-          <div className="space-y-8">
-            <div className="relative">
-              <h3 className="text-xl font-semibold mb-8 text-foreground/90 inline-block">
-                Libraries & Frameworks
-                <div className="absolute -bottom-3 left-0 h-1 w-1/3 bg-gradient-to-r from-secondary to-transparent rounded-full"></div>
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 gap-6">
-              {libraries.map((skill, index) => (
-                <SkillItem 
-                  key={index}
-                  name={skill.name}
-                  progress={skill.progress}
-                  color={skill.color}
-                  icon={skill.icon}
-                />
-              ))}
-            </div>
-          </div>
+          <SkillCard 
+            title="Deep Learning" 
+            icon={<Cpu size={24} className="text-purple-400" />}
+            color="bg-purple-950/50"
+          >
+            <SkillDetail name="Neural Networks" />
+            <SkillDetail name="CNN" />
+            <SkillDetail name="RNN/LSTM" />
+            <SkillDetail name="Transfer Learning" />
+          </SkillCard>
+          
+          <SkillCard 
+            title="Natural Language Processing" 
+            icon={<BookOpen size={24} className="text-emerald-400" />}
+            color="bg-emerald-950/50"
+          >
+            <SkillDetail name="Text Classification" />
+            <SkillDetail name="Sentiment Analysis" />
+            <SkillDetail name="Named Entity Recognition" />
+            <SkillDetail name="BERT/Transformers" />
+          </SkillCard>
+          
+          <SkillCard 
+            title="Data Analysis" 
+            icon={<BarChart2 size={24} className="text-blue-400" />}
+            color="bg-blue-950/50"
+          >
+            <SkillDetail name="Exploratory Data Analysis" />
+            <SkillDetail name="Statistical Analysis" />
+            <SkillDetail name="Data Visualization" />
+            <SkillDetail name="Time Series Analysis" />
+          </SkillCard>
+          
+          <SkillCard 
+            title="Programming" 
+            icon={<Code size={24} className="text-amber-400" />}
+            color="bg-amber-950/50"
+          >
+            <SkillDetail name="Python" />
+            <SkillDetail name="SQL" />
+            <SkillDetail name="R (Basics)" />
+            <SkillDetail name="Java (Basics)" />
+          </SkillCard>
+          
+          <SkillCard 
+            title="Tools & Frameworks" 
+            icon={<Wrench size={24} className="text-red-400" />}
+            color="bg-red-950/50"
+          >
+            <SkillDetail name="TensorFlow/Keras" />
+            <SkillDetail name="LLMs" />
+            <SkillDetail name="Scikit-Learn" />
+            <SkillDetail name="Pandas/NumPy" />
+          </SkillCard>
         </div>
       </div>
     </section>

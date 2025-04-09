@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
 
 @tailwind base;
@@ -50,7 +49,6 @@
     background-attachment: fixed;
   }
 
-  /* Custom component classes */
   .section-container {
     @apply max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24;
   }
@@ -113,40 +111,55 @@
     }
   }
   
-  /* New utility classes for skills and projects sections */
-  .skill-card {
-    @apply glass-card relative overflow-hidden transition-all duration-300;
+  .chart-grid-line {
+    @apply border-t border-foreground/10 h-0 w-full absolute;
   }
   
-  .skill-card:hover {
-    @apply transform -translate-y-1 shadow-lg border-primary/20;
+  .proficiency-pill {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
   }
   
-  .skill-icon {
-    @apply p-2 rounded-lg bg-muted text-foreground/80 transition-colors;
+  .proficiency-expert {
+    @apply proficiency-pill bg-amber-500/20 text-amber-500 border border-amber-500/30;
   }
   
-  .skill-card:hover .skill-icon {
-    @apply text-primary;
+  .proficiency-advanced {
+    @apply proficiency-pill bg-orange-500/20 text-orange-500 border border-orange-500/30;
   }
   
-  .section-subtitle {
-    @apply text-xl font-semibold mb-6 text-foreground/80 relative inline-block;
+  .proficiency-intermediate {
+    @apply proficiency-pill bg-pink-500/20 text-pink-500 border border-pink-500/30;
   }
   
-  .section-subtitle::after {
-    @apply content-[''] absolute -bottom-2 left-0 h-0.5 w-1/4 bg-gradient-to-r from-primary to-transparent rounded-full;
+  .chart-bar {
+    @apply w-full h-24 relative flex justify-center items-end;
   }
   
-  .project-card {
-    @apply glass-card overflow-hidden transition-all duration-300 flex flex-col h-full;
+  .progress-value {
+    @apply absolute -top-5 left-1/2 transform -translate-x-1/2 text-xs text-foreground/60;
   }
   
-  .project-card:hover {
-    @apply transform -translate-y-1 shadow-lg border-primary/20;
+  .workflow-step {
+    @apply flex items-center py-2;
   }
   
-  .badge-tech {
-    @apply text-xs font-mono bg-muted/50 text-foreground/70 rounded-full px-2 py-0.5 border border-white/5;
+  .workflow-number {
+    @apply text-amber-500 font-mono font-bold mr-3;
+  }
+  
+  .grid-lines {
+    @apply absolute inset-0 flex flex-col justify-between pointer-events-none;
+  }
+  
+  .bar-container {
+    @apply relative w-full h-full flex justify-center items-end;
+  }
+  
+  .skill-list-item {
+    @apply flex items-center gap-2 mb-2;
+  }
+  
+  .skill-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
   }
 }
