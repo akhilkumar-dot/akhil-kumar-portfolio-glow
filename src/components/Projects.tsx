@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Code } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,22 +25,22 @@ const ProjectCard: React.FC<ProjectProps> = ({
   color
 }) => {
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px]">
-      <div className={`h-3 ${color} w-full`}></div>
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px] bg-card/50 backdrop-blur-sm border border-white/5">
+      <div className={`h-2 ${color} w-full`}></div>
       <CardHeader>
-        <CardTitle className="font-bold">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle className="font-bold text-xl">{title}</CardTitle>
+        <CardDescription className="text-foreground/60">{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag, index) => (
-            <Badge key={index} variant="secondary" className="font-mono text-xs">{tag}</Badge>
+            <Badge key={index} variant="secondary" className="font-mono text-xs bg-card text-foreground/70">{tag}</Badge>
           ))}
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
         {github && (
-          <Button variant="outline" size="sm" className="gap-2" asChild>
+          <Button variant="outline" size="sm" className="gap-2 bg-transparent border-white/10 hover:bg-primary/10 hover:border-primary/30" asChild>
             <a href={github} target="_blank" rel="noopener noreferrer">
               <Github size={16} />
               Code
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
           </Button>
         )}
         {demo && (
-          <Button variant="default" size="sm" className="gap-2" asChild>
+          <Button variant="default" size="sm" className="gap-2 bg-primary/20 hover:bg-primary/30 border border-primary/30" asChild>
             <a href={demo} target="_blank" rel="noopener noreferrer">
               <ExternalLink size={16} />
               Live Demo
@@ -68,7 +68,7 @@ const Projects = () => {
       tags: ["NLP", "Python", "NLTK", "Scikit-learn"],
       github: "#",
       demo: "#",
-      color: "bg-brand-purple"
+      color: "bg-primary"
     },
     {
       title: "Image Classification System",
@@ -76,7 +76,7 @@ const Projects = () => {
       tags: ["Computer Vision", "TensorFlow", "Keras", "CNN"],
       github: "#",
       demo: "#",
-      color: "bg-brand-teal"
+      color: "bg-secondary"
     },
     {
       title: "Sales Prediction Dashboard",
@@ -110,11 +110,11 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20">
       <div className="section-container">
         <h2 className="section-title">My Projects</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <ProjectCard
               key={index}

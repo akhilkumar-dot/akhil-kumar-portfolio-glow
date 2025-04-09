@@ -11,21 +11,21 @@ interface SkillItemProps {
 
 const SkillItem: React.FC<SkillItemProps> = ({ name, progress, color, icon }) => {
   return (
-    <div className="data-card">
+    <div className="data-card group">
       <div className="flex items-center mb-3">
         <div className="mr-3 text-xl">{icon}</div>
-        <h4 className="font-medium text-brand-dark">{name}</h4>
+        <h4 className="font-medium text-foreground/80 group-hover:text-foreground transition-colors">{name}</h4>
       </div>
       <Progress value={progress} className={`h-2 ${color}`} />
-      <p className="text-right text-sm text-brand-gray mt-2">{progress}%</p>
+      <p className="text-right text-sm text-foreground/50 mt-2">{progress}%</p>
     </div>
   );
 };
 
 const Skills = () => {
   const technicalSkills = [
-    { name: "Python", progress: 90, color: "bg-brand-purple", icon: "🐍" },
-    { name: "Machine Learning", progress: 85, color: "bg-brand-teal", icon: "🤖" },
+    { name: "Python", progress: 90, color: "bg-primary", icon: "🐍" },
+    { name: "Machine Learning", progress: 85, color: "bg-secondary", icon: "🤖" },
     { name: "Data Analysis", progress: 80, color: "bg-blue-500", icon: "📊" },
     { name: "Deep Learning", progress: 75, color: "bg-purple-500", icon: "🧠" },
     { name: "NLP", progress: 70, color: "bg-emerald-500", icon: "💬" },
@@ -42,13 +42,13 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-brand-light">
+    <section id="skills" className="py-20">
       <div className="section-container">
         <h2 className="section-title">My Skills</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-brand-dark">Technical Skills</h3>
+            <h3 className="text-xl font-semibold mb-6 text-foreground/80">Technical Skills</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {technicalSkills.map((skill, index) => (
                 <SkillItem 
@@ -63,7 +63,7 @@ const Skills = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold mb-6 text-brand-dark">Libraries & Frameworks</h3>
+            <h3 className="text-xl font-semibold mb-6 text-foreground/80">Libraries & Frameworks</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {libraries.map((skill, index) => (
                 <SkillItem 
