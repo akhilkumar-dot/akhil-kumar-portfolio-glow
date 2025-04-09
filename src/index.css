@@ -112,4 +112,41 @@
       transform: rotate(360deg);
     }
   }
+  
+  /* New utility classes for skills and projects sections */
+  .skill-card {
+    @apply glass-card relative overflow-hidden transition-all duration-300;
+  }
+  
+  .skill-card:hover {
+    @apply transform -translate-y-1 shadow-lg border-primary/20;
+  }
+  
+  .skill-icon {
+    @apply p-2 rounded-lg bg-muted text-foreground/80 transition-colors;
+  }
+  
+  .skill-card:hover .skill-icon {
+    @apply text-primary;
+  }
+  
+  .section-subtitle {
+    @apply text-xl font-semibold mb-6 text-foreground/80 relative inline-block;
+  }
+  
+  .section-subtitle::after {
+    @apply content-[''] absolute -bottom-2 left-0 h-0.5 w-1/4 bg-gradient-to-r from-primary to-transparent rounded-full;
+  }
+  
+  .project-card {
+    @apply glass-card overflow-hidden transition-all duration-300 flex flex-col h-full;
+  }
+  
+  .project-card:hover {
+    @apply transform -translate-y-1 shadow-lg border-primary/20;
+  }
+  
+  .badge-tech {
+    @apply text-xs font-mono bg-muted/50 text-foreground/70 rounded-full px-2 py-0.5 border border-white/5;
+  }
 }
