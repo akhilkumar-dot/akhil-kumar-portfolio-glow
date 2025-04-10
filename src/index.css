@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
 
 @tailwind base;
@@ -161,5 +162,34 @@
   
   .skill-dot {
     @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+
+  /* New skill bar styles */
+  .skill-bars-wrapper {
+    @apply grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4 h-64 items-end;
+  }
+
+  .skill-bar-container {
+    @apply relative h-48 w-8 mx-auto bg-foreground/5 rounded-t-sm overflow-hidden;
+  }
+
+  .skill-bar-track {
+    @apply absolute inset-0 border border-foreground/10 rounded-t-sm;
+  }
+
+  .skill-bar-fill {
+    @apply absolute bottom-0 left-0 w-full rounded-t-sm transition-all duration-1000;
+  }
+
+  .skill-expert {
+    @apply bg-amber-500;
+  }
+
+  .skill-advanced {
+    @apply bg-orange-500;
+  }
+
+  .skill-intermediate {
+    @apply bg-pink-500;
   }
 }
