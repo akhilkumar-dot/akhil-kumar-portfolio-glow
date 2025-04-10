@@ -13,7 +13,7 @@ interface SkillDetailProps {
   name: string;
 }
 
-const SkillDetail: React.FC<SkillDetailProps & { children: React.ReactNode }> = ({ name, children }) => {
+const SkillDetail: React.FC<SkillDetailProps> = ({ name }) => {
   return (
     <li className="flex items-center mb-2">
       <div className="w-2 h-2 rounded-full bg-primary/70 mr-3"></div>
